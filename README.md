@@ -1,2 +1,2 @@
-# spring-debug-app
-Some Food Recipes
+# another-food-recipes-app
+Some Food Recipes ...
