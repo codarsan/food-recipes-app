@@ -1,2 +1,2 @@
-# another-food-recipes-app
+# yet-another-food-recipes-app
 Some Food Recipes ...
