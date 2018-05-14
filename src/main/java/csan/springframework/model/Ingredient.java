@@ -2,6 +2,7 @@ package csan.springframework.model;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +25,8 @@ public class Ingredient {
 	
 	private BigDecimal amount;
 	
-	@OneToOne(mappedBy="uom")
-	private UnitOfMesure unitOfMesure;
+	@OneToOne(fetch = FetchType.EAGER)
+	private UnitOfMesure uom;
 
 	public Long getId() {
 		return id;
@@ -59,12 +60,14 @@ public class Ingredient {
 		this.amount = amount;
 	}
 
-	public UnitOfMesure getUnitOfMesure() {
-		return unitOfMesure;
+	public UnitOfMesure getUom() {
+		return uom;
 	}
 
-	public void setUnitOfMesure(UnitOfMesure unitOfMesure) {
-		this.unitOfMesure = unitOfMesure;
+	public void setUom(UnitOfMesure uom) {
+		this.uom = uom;
 	}
+
+
 
 }

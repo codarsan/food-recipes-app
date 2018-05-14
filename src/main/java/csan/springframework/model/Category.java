@@ -1,12 +1,14 @@
 package csan.springframework.model;
 
 import java.util.Set;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
+@Entity
 public class Category {
 	
 	@Id
@@ -14,8 +16,8 @@ public class Category {
 	private Long id;
 	private String categoryName;
 	
-	@ManyToMany
-	private Set<Recipe> recipe; 
+	@ManyToMany(mappedBy="categories")
+	private Set<Recipe> recipes; 
 
 	public Long getId() {
 		return id;
@@ -33,12 +35,13 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-	public Set<Recipe> getRecipe() {
-		return recipe;
+	public Set<Recipe> getRecipes() {
+		return recipes;
 	}
 
-	public void setRecipe(Set<Recipe> recipe) {
-		this.recipe = recipe;
+	public void setRecipes(Set<Recipe> recipes) {
+		this.recipes = recipes;
 	}
+
 
 }
