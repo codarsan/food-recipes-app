@@ -8,6 +8,6 @@ import csan.springframework.model.UnitOfMesure;
 
 public interface UnitOfMesureRepository extends CrudRepository<UnitOfMesure, Long>{
 	
-	Optional<UnitOfMesure> findByuom (String uom);
+	Optional<UnitOfMesure> findByUom (String uom);
 
 }

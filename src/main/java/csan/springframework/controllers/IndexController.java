@@ -1,32 +1,40 @@
 package csan.springframework.controllers;
 
-import java.util.Optional;
+import java.util.Comparator;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import csan.springframework.model.Category;
-import csan.springframework.model.UnitOfMesure;
-import csan.springframework.repositories.CategoryRepository;
-import csan.springframework.repositories.UnitOfMesureRepository;
+import csan.springframework.model.Recipe;
+import csan.springframework.services.RecipeService;
 
 @Controller
 public class IndexController {
 	
-	private CategoryRepository categoryRepository;
-	private UnitOfMesureRepository unitOfMesureRepository;
-	
-	public IndexController(CategoryRepository categoryRepository, UnitOfMesureRepository unitOfMesureRepository) {
-		this.categoryRepository = categoryRepository;
-		this.unitOfMesureRepository = unitOfMesureRepository;
+	private final RecipeService recipeService;
+
+	public IndexController(RecipeService recipeService) {
+		this.recipeService = recipeService;
 	}
+	
+	//public Comparator<Recipe> compareRecipe = new Comparator<Recipe>() {
+
+	//	@Override
+	//	public int compare(Recipe o1, Recipe o2) {
+			// TODO Auto-generated method stub
+	//		return o1.getId().compareTo(o2.getId());
+	//	}
+	//};
+	
+	public Comparator<Recipe> compareRecipe= Comparator.comparing(Recipe::getId);
+	
 
 	@RequestMapping({"","/","index"})
-	public String getIndexPage() {
-		Optional<Category> categoryOptional = categoryRepository.findBycategoryName("Italian");
-		Optional<UnitOfMesure> uomOptional = unitOfMesureRepository.findByuom("Ounce");	
-		System.out.println("Cat id : "+ categoryOptional.get().getId());
-		System.out.println("Uom id : "+ uomOptional.get().getId());
+	public String getIndexPage(Model model) {
+		
+		model.addAttribute("recipes", recipeService.getRecipes());
+		model.addAttribute("compareRecipe",compareRecipe);
 		return "index";
 	}
 

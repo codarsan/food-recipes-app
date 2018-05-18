@@ -5,6 +5,16 @@
 <title>Food Recipes</title>
 </head>
 <body>
-<h1>Debugging</h1>
+<h1>My Recipes</h1>
+<table>
+	<tr>
+		<th>ID</th>	
+		<th>Description</th>
+	</tr>
+	<tr th:each="recipe : ${#lists.sort(recipes,compareRecipe)}">
+		<td th:text="${recipe.id}"></td>
+		<td th:text="${recipe.description}"></td>
+	</tr>
+</table>
 </body>
 </html>

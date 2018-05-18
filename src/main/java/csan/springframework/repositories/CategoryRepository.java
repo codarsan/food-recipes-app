@@ -6,6 +6,6 @@ import csan.springframework.model.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long>{
 	
-	Optional<Category> findBycategoryName (String categoryName);
+	Optional<Category> findByCategoryName (String categoryName);
 
 }
