@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import csan.springframework.model.Recipe;
 import csan.springframework.services.RecipeService;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class IndexController {
 	
@@ -32,7 +33,7 @@ public class IndexController {
 
 	@RequestMapping({"","/","index"})
 	public String getIndexPage(Model model) {
-		
+		log.debug("hi im in controller");
 		model.addAttribute("recipes", recipeService.getRecipes());
 		model.addAttribute("compareRecipe",compareRecipe);
 		return "index";
