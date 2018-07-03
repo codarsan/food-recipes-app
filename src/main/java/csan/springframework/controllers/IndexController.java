@@ -23,7 +23,6 @@ public class IndexController {
 
 	//	@Override
 	//	public int compare(Recipe o1, Recipe o2) {
-			// TODO Auto-generated method stub
 	//		return o1.getId().compareTo(o2.getId());
 	//	}
 	//};

@@ -35,7 +35,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		// TODO Auto-generated method stub
 		recipeRepository.saveAll(getRecipes());
 		log.debug("bootstrap data");
 	}
@@ -137,7 +136,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		Recipe guacRecipe = new Recipe();
 		guacRecipe.setDescription("Perfect Guacamole");
 		guacRecipe.setPrepTime(10);
-		guacRecipe.setCookTime(0);
+		guacRecipe.setCookTime(20);
+		guacRecipe.setServings(4);
+		guacRecipe.setSource("Simply Recipe");
 		guacRecipe.setDifficulty(Difficulty.EASY);
 		guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl."+"\n"+
 				"2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)"+"\n"+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Recipe Description</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" 
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" 
+	    crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.1.1/css/bootstrap.min.css}">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+		crossorigin="anonymous" th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+		crossorigin="anonymous" ></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" 
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" 
+		crossorigin="anonymous" th:src="@{/webjars/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container-fluid" style="margin-top: 20px">
+		<div class="row">
+			<div class="col-md-6 offset-3">
+				<div class="card bg-primary">
+					<div class="card-header">
+						<h5 class="text-white" th:text="${recipe.description}">Recipe Description</h5>
+					</div>
+					<div class="card-body bg-light" >
+						<div class="row">
+							<div class="col-md-3"> 
+							<b>Categories</b>
+							</div>
+							<div class="col-md-9" >
+								<ul th:each="category : ${recipe.categories}">
+									<li th:text="${category.categoryName}">cat 1</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+							<b>Prep Time</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.prepTime}+' min'">
+							30min
+							</div>
+							<div class="col-md-3">
+							<b>Difficulty</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.difficulty}">
+							Easy
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+							<b>Cooktime</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.cookTime}+' min'">
+							30min
+							</div>
+							<div class="col-md-3">
+							<b>Servings</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.servings}">
+							4
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+							<b>Source</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.source}">
+							30min
+							</div>
+							<div class="col-md-3">
+							<b>URL</b>
+							</div>
+							<div class="col-md-3" th:text="${recipe.url}">
+							http://www.example.com
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6 offset-3" style="margin-top: 20px">
+				<div class="card bg-primary">
+					<div class="card-header" >
+						<h5 class="text-white" >Ingredients</h5>
+					</div>
+					<div class="card-body bg-light" >
+						<div class="row">
+							<div class="col-md-12">
+								<ul th:each="ingredient : ${recipe.ingredients}">
+									<li th:text="${ingredient.amount}+' '+${ingredient.uom.uom}+' - '+${ingredient.description}">1 Cup of Milk</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6 offset-3" style="margin-top: 20px">
+				<div class="card bg-primary">
+					<div class="card-header" >
+						<h5 class="text-white" >Directions</h5>
+					</div>
+					<div class="card-body bg-light" >
+						<div class="row">
+							<div class="col-md-12" >
+								<p th:text="${recipe.directions}"> zeflklzefkezkfe zkfzefezkfz eklfzeklfzek lfzelkzeflkezfl ezkzlzef kzefkzeklfez k lzefklzeffkze lkzefklzef </p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6 offset-3" style="margin-top: 20px">
+				<div class="card bg-primary">
+					<div class="card-header" >
+						<h5 class="text-white" >Notes</h5>
+					</div>
+					<div class="card-body bg-light" >
+						<div class="row">
+							<div class="col-md-12" th:text="${recipe.notes.notes}">
+								<p> zeflklz efkezkfezkfzefe zkfzeklfzeklfz  kzefkzeklfez k lzefklzeffkze lkzefklzef </p>
+							</div>
+						</div>	
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

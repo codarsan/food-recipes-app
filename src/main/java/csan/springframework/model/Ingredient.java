@@ -46,6 +46,9 @@ public class Ingredient {
 		this.recipe = recipe;
 	}
 
+	public Ingredient() {
+		
+	}
 	
 
 
