@@ -23,6 +23,7 @@ import csan.springframework.model.Recipe;
 import csan.springframework.services.RecipeService;
 
 public class IndexControllerTest {
+	
 	IndexController indexController;
 	@Mock
 	RecipeService recipeService;

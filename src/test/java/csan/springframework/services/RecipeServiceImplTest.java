@@ -13,6 +13,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import csan.springframework.commands.RecipeCommand;
+import csan.springframework.converters.RecipeCommandToRecipe;
+import csan.springframework.converters.RecipeToRecipeCommand;
 import csan.springframework.model.Recipe;
 import csan.springframework.repositories.RecipeRepository;
 
@@ -21,15 +25,19 @@ public class RecipeServiceImplTest {
 	RecipeServiceImpl recipeService;
 	@Mock
 	RecipeRepository recipeRepository;
+	@Mock
+	RecipeToRecipeCommand recipeToRecipeCommand;
+	@Mock
+	RecipeCommandToRecipe recipeCommandToRecipe;
 	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		recipeService = new RecipeServiceImpl(recipeRepository);
+		recipeService = new RecipeServiceImpl(recipeRepository,recipeToRecipeCommand,recipeCommandToRecipe);
 	}
 
 	@Test
-	public void testGetRecipesById() {
+	public void testfindById() {
 		Recipe recipe = new Recipe();
 		recipe.setId(3L);
 		Optional<Recipe> recipeOptional = Optional.of(recipe);
@@ -55,4 +63,30 @@ public class RecipeServiceImplTest {
 		verify(recipeRepository,times(1)).findAll();
 	}
 
+	@Test
+	public void testfindCommandById() {
+		Recipe recipe = new Recipe();
+		recipe.setId(3L);
+		Optional<Recipe> recipeOptional = Optional.of(recipe);
+		
+		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
+		
+		RecipeCommand command = new RecipeCommand();
+		command.setId(3L);
+		
+		when(recipeToRecipeCommand.convert(Mockito.any())).thenReturn(command);
+		
+		RecipeCommand commandById = recipeService.findCommandById(3L);
+		assertNotNull("Null Recipe", commandById);
+        verify(recipeRepository, times(1)).findById(Mockito.anyLong());
+        verify(recipeRepository, never()).findAll();
+	}
+	
+	@Test
+	public void testDeleteById() throws Exception{
+		Long idToDelete = Long.valueOf(1L);
+		recipeService.deleteById(idToDelete);
+		verify(recipeRepository,times(1)).deleteById(Mockito.anyLong());
+	}
+	
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Food Recipes</title>
+	<title>Show Ingredient</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" 
 		  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" 
 	      crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.1.1/css/bootstrap.min.css}">
@@ -21,30 +21,26 @@
 		<div class="row">
 			<div class="col-md-6 offset-3">
 				<div class="card bg-primary">
-					<div class="card-header row" >
-						<h5 class="text-white col-md-auto" >My Recipes</h5>
-						<a class="btn btn-info offset-md-7" href="#" th:href="@{'/recipe/new'}">New Recipe</a>
+					<div class="card-header" >
+						<h5 class="text-white" >Ingredient</h5>
 					</div>
 					<div class="card-body bg-light" >
-						<div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+						<div class="table-responsive" th:if="${not #lists.isEmpty(ingredient)}">
 							<table class="table table-hover">
 								<thead class="thead-inverse">
 								<tr>
 									<th>ID</th>	
 									<th>Description</th>
-									<th>View</th>
-									<th>Update</th>
-									<th>Delete</th>
+									
 								</tr>
 								</thead>
-								<tr th:each="recipe : ${#lists.sort(recipes,compareRecipe)}">
-									<td th:text="${recipe.id}"></td>
-									<td th:text="${recipe.description}"></td>
-									<td><a href="#" th:href="@{'/recipe/'+ ${recipe.id}+'/show/'}">View</a></td>
-									<td><a href="#" th:href="@{'/recipe/'+ ${recipe.id}+'/update/'}">Update</a></td>
-									<td><a href="#" th:href="@{'/recipe/'+ ${recipe.id}+'/delete/'}">Delete</a></td>
+								<tr>
+									<td th:text="${ingredient.id}"></td>
+									<td th:text="${ingredient.amount}+' '+${ingredient.uom.uom}+' '+${ingredient.description}"></td>
+									
 								</tr>
 							</table>
+							<a href="#" class="btn btn-primary" th:href="@{'/recipe/'+${ingredient.recipeId}+'/ingredients'}">Go Back</a>
 						</div>
 					</div>
 				</div>

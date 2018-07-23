@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -174,7 +176,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		guacRecipe.addIngredient(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal("0.5"), eachUom));
 		
 		guacRecipe.getCategories().add(americanCategory);
-		guacRecipe.getCategories().add(mexicanCategory);
+		Set<Category> cat = guacRecipe.getCategories();
+		cat.add(mexicanCategory);
 		
 		recipes.add(guacRecipe);
 		
@@ -222,51 +225,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 				tacoRecipe.getCategories().add(mexicanCategory);
 				
 				recipes.add(tacoRecipe);
-		// ******* test recipe !!!!
-				
-				Recipe tacoRecipe2 = new Recipe();
-				tacoRecipe2.setDescription("Spicy Grilled Chicken Tacos 2");
-				tacoRecipe2.setPrepTime(20);
-				tacoRecipe2.setCookTime(15);
-				tacoRecipe2.setServings(4);
-				tacoRecipe2.setDifficulty(Difficulty.MODERATE);
-				tacoRecipe2.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\r\n" + 
-						"\r\n" + 
-						"2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\r\n" + 
-						"\r\n" + 
-						"Set aside to marinate while the grill heats and you prepare the rest of the toppings.\r\n" + 
-						"\r\n" + 
-						"Spicy Grilled Chicken Tacos\r\n" + 
-						"\r\n" + 
-						"3 Grill the chicken: Grill the chicken for 3 to 4 minutes per side, or until a thermometer inserted into the thickest part of the meat registers 165F. Transfer to a plate and rest for 5 minutes.\r\n" + 
-						"\r\n" + 
-						"4 Warm the tortillas: Place each tortilla on the grill or on a hot, dry skillet over medium-high heat. As soon as you see pockets of the air start to puff up in the tortilla, turn it with tongs and heat for a few seconds on the other side.\r\n" + 
-						"\r\n" + 
-						"Wrap warmed tortillas in a tea towel to keep them warm until serving.\r\n" + 
-						"\r\n" + 
-						"5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.\r\n");
-				Notes tacoNotes2 = new Notes();
-				tacoNotes2.setNotes("Everyone can grab a warm tortilla from the pile and make their own tacos just they way they like them.\r\n" + 
-						"\r\n" + 
-						"You could also easily double or even triple this recipe for a larger party. A taco and a cold beer on a warm day? Now that’s living!");
-				tacoNotes2.setRecipe(tacoRecipe2);
-				tacoRecipe2.setNotes(tacoNotes2);
-				tacoRecipe2.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
-				
-				tacoRecipe2.getIngredients().add(new Ingredient("ancho chili powder", new BigDecimal(2), tableSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("dried oregano", new BigDecimal(1), teaSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("dried cumin", new BigDecimal(1), teaSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("sugar", new BigDecimal(1), teaSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("salt", new BigDecimal("0.5"), teaSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("finely grated orange zest", new BigDecimal(1), tableSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("fresh-squeezed orange juice", new BigDecimal(3), tableSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("olive oil", new BigDecimal("2"), tableSpoonUom, tacoRecipe2));
-				tacoRecipe2.getIngredients().add(new Ingredient("skinless, boneless chicken thighs (1 1/4 pounds)", new BigDecimal("4"), eachUom, tacoRecipe2));
-				
-				tacoRecipe2.getCategories().add(americanCategory);
-				tacoRecipe2.getCategories().add(italianCategory);
-				
-				recipes.add(tacoRecipe2);				
+						
 		return recipes;
 	}
 
