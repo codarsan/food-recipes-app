@@ -18,9 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class IngredientController {
 	
-	RecipeService recipeService;
-	IngredientService ingredientService;
-	UomService uomService;
+	private final RecipeService recipeService;
+	private final IngredientService ingredientService;
+	private final UomService uomService;
 	
 	public IngredientController(RecipeService recipeService, IngredientService ingredientService,
 			UomService uomService) {

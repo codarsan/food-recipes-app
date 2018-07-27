@@ -23,7 +23,7 @@
 				<div class="card bg-primary">
 					<div class="card-header row" >
 						<h5 class="text-white col-md-auto" >Ingredients</h5>
-						<a href="#" class="btn btn-info offset-md-8" th:href="@{'/recipe/'+${recipe.id}+'/ingredient/new'}">New</a>
+						<a href="#" class="btn btn-outline-light offset-md-8" th:href="@{'/recipe/'+${recipe.id}+'/ingredient/new'}">New</a>
 					</div>
 					<div class="card-body bg-light" >
 						<div class="table-responsive" th:if="${not #lists.isEmpty(recipe.ingredients)}">

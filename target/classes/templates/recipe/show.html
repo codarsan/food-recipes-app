@@ -21,18 +21,25 @@
 		<div class="row">
 			<div class="col-md-6 offset-3">
 				<div class="card bg-primary">
-					<div class="card-header">
-						<h5 class="text-white" th:text="${recipe.description}">Recipe Description</h5>
+					<div class="card-header row">
+						<h5 class="card-title text-white" th:text="${recipe.description}">Recipe Description</h5>
+						<a class="btn btn-outline-light offset-md-6" href="#"
+						   th:href="@{'/recipe/'+${recipe.getId()}+'/image'}">Change Image</a>
 					</div>
 					<div class="card-body bg-light" >
 						<div class="row">
 							<div class="col-md-3"> 
 							<b>Categories</b>
 							</div>
-							<div class="col-md-9" >
+							<div class="col-md-3" >
 								<ul th:each="category : ${recipe.categories}">
 									<li th:text="${category.categoryName}">cat 1</li>
 								</ul>
+							</div>
+							<div class="col-md-6">
+								<img alt="" src="../../static/images/kafteji.jpg"
+									 th:src="@{'/recipe/'+${recipe.getId()}+'/recipeimage'}"
+									 width="200" height="200">
 							</div>
 						</div>
 						<div class="row">
@@ -86,10 +93,10 @@
 					<div class="card-header" >
 						<div class="row">
 						<div  class="col-md-10">
-							<h5 class="text-white" >Ingredients</h5>
+							<h5 class="card-title text-white" >Ingredients</h5>
 						</div>
 						<div class="col-md-2">
-							<a class="btn btn-info" th:href="@{'/recipe/'+${recipe.id}+'/ingredients'}">View</a>
+							<a class="btn btn-outline-light" href="#" th:href="@{'/recipe/'+${recipe.id}+'/ingredients'}">View</a>
 						</div>
 						</div>
 					</div>
@@ -109,7 +116,7 @@
 			<div class="col-md-6 offset-3" style="margin-top: 20px">
 				<div class="card bg-primary">
 					<div class="card-header" >
-						<h5 class="text-white" >Directions</h5>
+						<h5 class="card-title text-white" >Directions</h5>
 					</div>
 					<div class="card-body bg-light" >
 						<div class="row">
@@ -124,7 +131,7 @@
 			<div class="col-md-6 offset-3" style="margin-top: 20px">
 				<div class="card bg-primary">
 					<div class="card-header" >
-						<h5 class="text-white" >Notes</h5>
+						<h5 class="card-title text-white" >Notes</h5>
 					</div>
 					<div class="card-body bg-light" >
 						<div class="row">
@@ -133,7 +140,6 @@
 							</div>
 						</div>	
 					</div>
-					
 				</div>
 			</div>
 		</div>

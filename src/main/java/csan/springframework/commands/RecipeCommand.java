@@ -13,7 +13,7 @@ import lombok.Setter;
 public class RecipeCommand {
 
 	private Long id;
-	private byte[] image;
+	private Byte[] image;
 	private NotesCommand notes;
 	private Set<IngredientCommand> ingredients = new HashSet<>();
 	private Set<CategoryCommand> categories = new HashSet<>();
