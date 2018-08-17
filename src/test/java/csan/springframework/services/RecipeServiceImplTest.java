@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import csan.springframework.commands.RecipeCommand;
 import csan.springframework.converters.RecipeCommandToRecipe;
 import csan.springframework.converters.RecipeToRecipeCommand;
+import csan.springframework.exceptions.NotFoundException;
 import csan.springframework.model.Recipe;
 import csan.springframework.repositories.RecipeRepository;
 
@@ -34,6 +35,16 @@ public class RecipeServiceImplTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		recipeService = new RecipeServiceImpl(recipeRepository,recipeToRecipeCommand,recipeCommandToRecipe);
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected = NotFoundException.class)
+	public void testNotFoundId() {
+		Optional<Recipe> emptyOptional = Optional.empty();
+		
+		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(emptyOptional);
+		
+		Recipe recipe = recipeService.findById(1L);
 	}
 
 	@Test

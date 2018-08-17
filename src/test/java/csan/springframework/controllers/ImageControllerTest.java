@@ -38,7 +38,16 @@ public class ImageControllerTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		imageController = new ImageController(recipeService, imageService);
-		mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(imageController)
+				.setControllerAdvice(new ExceptionHandlerController())
+				.build();
+	}
+	
+	@Test
+	public void badInputHandleTest() throws Exception{
+		mockMvc.perform(get("/recipe/dsf/image"))
+		.andExpect(status().isBadRequest())
+		.andExpect(view().name("400error"));
 	}
 
 	@Test

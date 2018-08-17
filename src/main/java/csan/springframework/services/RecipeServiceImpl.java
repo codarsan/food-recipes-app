@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import csan.springframework.commands.RecipeCommand;
 import csan.springframework.converters.RecipeCommandToRecipe;
 import csan.springframework.converters.RecipeToRecipeCommand;
+import csan.springframework.exceptions.NotFoundException;
 import csan.springframework.model.Recipe;
 import csan.springframework.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,8 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 		if (!recipeOptional.isPresent()) {
-			throw new RuntimeException("recipe not found !");
+			//throw new RuntimeException("recipe not found !");
+			throw new NotFoundException("Recipe Not Found with ID : " + id.toString());
 		}
 		return recipeOptional.get();
 	}
