@@ -96,8 +96,8 @@ public class IngredientControllerTest {
 	public void testSaveOrUpdate() throws Exception {
 		//given
 		IngredientCommand command = new IngredientCommand();
-		command.setId(2L);
-		command.setRecipeId(3L);
+		command.setId(Long.valueOf("2"));
+		command.setRecipeId(Long.valueOf("3"));
 		
 		//when
 		when(ingredientService.saveIngredientCommand(Mockito.any())).thenReturn(command);

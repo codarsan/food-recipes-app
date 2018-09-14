@@ -51,7 +51,7 @@ public class IndexControllerTest {
 		Set<Recipe> recipes = new HashSet<>();
 		recipes.add(new Recipe());
 		Recipe recipe = new Recipe();
-		recipe.setId(2L);
+		recipe.setId(Long.valueOf("2"));
 		recipes.add(recipe);
 		
 		@SuppressWarnings("unchecked")

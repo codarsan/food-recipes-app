@@ -50,12 +50,12 @@ public class RecipeServiceImplTest {
 	@Test
 	public void testfindById() {
 		Recipe recipe = new Recipe();
-		recipe.setId(3L);
+		recipe.setId(Long.valueOf("3"));
 		Optional<Recipe> recipeOptional = Optional.of(recipe);
 		
 		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
 		
-		Recipe recipeReturned = recipeService.findById(3L);
+		Recipe recipeReturned = recipeService.findById(Long.valueOf("3"));
 		assertNotNull("Null Recipe", recipeReturned);
 		verify(recipeRepository,times(1)).findById(Mockito.anyLong());
 		verify(recipeRepository,never()).findAll();
@@ -77,17 +77,17 @@ public class RecipeServiceImplTest {
 	@Test
 	public void testfindCommandById() {
 		Recipe recipe = new Recipe();
-		recipe.setId(3L);
+		recipe.setId(Long.valueOf("3"));
 		Optional<Recipe> recipeOptional = Optional.of(recipe);
 		
 		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
 		
 		RecipeCommand command = new RecipeCommand();
-		command.setId(3L);
+		command.setId(Long.valueOf("3"));
 		
 		when(recipeToRecipeCommand.convert(Mockito.any())).thenReturn(command);
 		
-		RecipeCommand commandById = recipeService.findCommandById(3L);
+		RecipeCommand commandById = recipeService.findCommandById(Long.valueOf("3"));
 		assertNotNull("Null Recipe", commandById);
         verify(recipeRepository, times(1)).findById(Mockito.anyLong());
         verify(recipeRepository, never()).findAll();

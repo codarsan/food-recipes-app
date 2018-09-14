@@ -18,8 +18,8 @@ public class RecipeToRecipeCommandTest {
     public static final String SOURCE = "Source";
     public static final String URL = "Some URL";
     public static final Long CAT_ID_1 = 1L;
-    public static final Long CAT_ID2 = 2L;
-    public static final Long INGRED_ID_1 = 3L;
+    public static final Long CAT_ID2 = Long.valueOf("2");
+    public static final Long INGRED_ID_1 = Long.valueOf("3");
     public static final Long INGRED_ID_2 = 4L;
     public static final Long NOTES_ID = 9L;
     RecipeToRecipeCommand converter;

@@ -33,7 +33,7 @@ public class ImageServiceImplTest {
 	@Test
 	public void testSaveImageFile() throws Exception{
 		//given
-		Long id = new Long(3L);
+		Long id = new Long(Long.valueOf("3"));
 		Recipe recipe = new Recipe();
 		recipe.setId(id);
 		Optional<Recipe> recipeOptional = Optional.of(recipe);

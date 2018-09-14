@@ -52,8 +52,8 @@ public class IngredientServiceImplTest {
 		Ingredient ingredient2 = new Ingredient();
 		Ingredient ingredient3 = new Ingredient();
 		ingredient1.setId(1L);
-		ingredient2.setId(2L);
-		ingredient3.setId(3L);
+		ingredient2.setId(Long.valueOf("2"));
+		ingredient3.setId(Long.valueOf("3"));
 		
 		recipe.addIngredient(ingredient1);
 		recipe.addIngredient(ingredient2);
@@ -64,10 +64,10 @@ public class IngredientServiceImplTest {
 		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
 		
 		//when
-		IngredientCommand ingredientCommand = ingredientService.findByRecipeIdAndIngredientId(1L,3L);
+		IngredientCommand ingredientCommand = ingredientService.findByRecipeIdAndIngredientId(1L,Long.valueOf("3"));
 		
 		//then
-		assertEquals(Long.valueOf(3L), ingredientCommand.getId());
+		assertEquals(Long.valueOf(Long.valueOf("3")), ingredientCommand.getId());
 		assertEquals(Long.valueOf(1L), ingredientCommand.getRecipeId());
 		verify(recipeRepository, times(1)).findById(Mockito.anyLong());
 	}
@@ -76,14 +76,14 @@ public class IngredientServiceImplTest {
 	public void testSaveIngredientCommand() throws Exception{
 		//given
 		IngredientCommand command = new IngredientCommand();
-		command.setId(2L);
-		command.setRecipeId(3L);
+		command.setId(Long.valueOf("2"));
+		command.setRecipeId(Long.valueOf("3"));
 		
 		Optional<Recipe> recipeOptional = Optional.of(new Recipe());
 		
 		Recipe savedRecipe = new Recipe();
 		savedRecipe.addIngredient(new Ingredient());
-		savedRecipe.getIngredients().iterator().next().setId(2L);
+		savedRecipe.getIngredients().iterator().next().setId(Long.valueOf("2"));
 		
 		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
 		when(recipeRepository.save(Mockito.any())).thenReturn(savedRecipe);
@@ -92,7 +92,7 @@ public class IngredientServiceImplTest {
 		IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 		
 		//then
-		assertEquals(Long.valueOf(2L), savedCommand.getId());
+		assertEquals(Long.valueOf(Long.valueOf("2")), savedCommand.getId());
 		verify(recipeRepository,times(1)).findById(Mockito.anyLong());
 		verify(recipeRepository,times(1)).save(Mockito.any(Recipe.class));
 		
@@ -102,20 +102,20 @@ public class IngredientServiceImplTest {
 	public void testdeleteIngredient() throws Exception{
 		//given
 		Ingredient ingredient = new Ingredient();
-		ingredient.setId(2L);
+		ingredient.setId(Long.valueOf("2"));
 		Recipe recipe = new Recipe();
-		recipe.setId(3L);
+		recipe.setId(Long.valueOf("3"));
 		recipe.addIngredient(ingredient);
 		
 		Optional<Recipe> recipeOptional = Optional.of(recipe);
 		when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
 		
 		//when
-		ingredientService.deleteById(Long.valueOf(3L), Long.valueOf(2L));
+		ingredientService.deleteById(Long.valueOf(Long.valueOf("3")), Long.valueOf(Long.valueOf("2")));
 		
 		//then
 		assertEquals(0, recipeOptional.get().getIngredients().stream()
-				.filter(ingre->ingre.getId().equals(Long.valueOf(2L))).count());
+				.filter(ingre->ingre.getId().equals(Long.valueOf(Long.valueOf("2")))).count());
 		
 	}
 }

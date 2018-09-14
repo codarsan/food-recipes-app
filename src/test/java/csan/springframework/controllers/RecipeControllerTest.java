@@ -81,7 +81,7 @@ public class RecipeControllerTest {
 	@Test
 	public void saveOrUpdateTest() throws Exception {
 		RecipeCommand command = new RecipeCommand();
-		command.setId(2L);
+		command.setId(Long.valueOf("2"));
 		
 		when(recipeService.saveRecipeCommand(Mockito.any())).thenReturn(command);
 		
@@ -105,7 +105,7 @@ public class RecipeControllerTest {
 	public void saveOrUpdateFailTest() throws Exception {
 		
 		RecipeCommand command = new RecipeCommand();
-		command.setId(2L);
+		command.setId(Long.valueOf("2"));
 		
 		when(recipeService.saveRecipeCommand(Mockito.any())).thenReturn(command);
 		

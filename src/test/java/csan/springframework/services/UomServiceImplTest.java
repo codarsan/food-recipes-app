@@ -39,7 +39,7 @@ public class UomServiceImplTest {
 		UnitOfMesure uom1 = new UnitOfMesure();
 		uom1.setId(1L);
 		UnitOfMesure uom2 = new UnitOfMesure();
-		uom2.setId(2L);
+		uom2.setId(Long.valueOf("2"));
 		uomSet.add(uom1);
 		uomSet.add(uom2);
 		

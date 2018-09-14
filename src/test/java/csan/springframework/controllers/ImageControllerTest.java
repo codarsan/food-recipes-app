@@ -87,7 +87,7 @@ public class ImageControllerTest {
 	public void testGetImageFromDb()throws Exception {
 		//given
 		RecipeCommand  recipeCommand = new RecipeCommand();
-		recipeCommand.setId(3L);
+		recipeCommand.setId(Long.valueOf("3"));
 		
 		String file = "fake image file";
 		Byte[] boxedFile = new Byte[file.getBytes().length];
