@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: csan.springframework.controllers.ImageControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.234 s - in csan.springframework.controllers.ImageControllerTest
